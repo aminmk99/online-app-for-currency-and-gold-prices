@@ -12,6 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: 'dana',
+      ),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -20,44 +23,53 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         Locale('fa'), // Persian
       ],
-      home: Scaffold(
-        appBar: myAppBar('قیمت بروز ارز و سکه'),
-        body: myBody(),
-      ),
-    );
-  }
-
-  myAppBar(String titleText) {
-    return AppBar(
-      backgroundColor: Colors.white,
-      actions: [
-        Image.asset('assets/images/icon.png'),
-        Align(
-          alignment: Alignment.center,
-          child: Text(
-            titleText,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        Expanded(
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 30),
-              child: Image.asset(
-                'assets/images/menu.png',
-              ),
-            ),
-          ),
-        ),
-      ],
+      home: MyHome(),
     );
   }
 }
+
+class MyHome extends StatelessWidget {
+  const MyHome({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: myAppBar('قیمت بروز ارز و سکه'),
+      body: myBody(),
+    );
+  }
+}
+
+myAppBar(String titleText) {
+  return AppBar(
+    backgroundColor: Colors.white,
+    actions: [
+      Image.asset('assets/images/icon.png'),
+      Align(
+        alignment: Alignment.center,
+        child: Text(
+          titleText,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      Expanded(
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 30),
+            child: Image.asset(
+              'assets/images/menu.png',
+            ),
+          ),
+        ),
+      ),
+    ],
+  );
+} //app bar of scaffold
 
 myBody() {
   return Padding(
@@ -89,40 +101,4 @@ myBody() {
       ],
     ),
   );
-}
-
-class MyAppBar extends StatelessWidget {
-  const MyAppBar({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.white,
-      actions: [
-        Image.asset('assets/images/icon.png'),
-        Align(
-          alignment: Alignment.center,
-          child: Text(
-            'قیمت بروز سکه و ارز',
-            style: TextStyle(
-              color: Colors.black,
-            ),
-          ),
-        ),
-        Expanded(
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 30),
-              child: Image.asset(
-                'assets/images/menu.png',
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
+} //body of scaffold
