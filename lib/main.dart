@@ -25,11 +25,13 @@ class MyApp extends StatelessWidget {
             fontFamily: 'dana',
             fontSize: 13,
             fontWeight: FontWeight.w300,
+            color: Colors.black,
           ),
           headline2: TextStyle(
             fontFamily: 'dana',
             fontSize: 14,
             fontWeight: FontWeight.w300,
+            color: Colors.white,
           ),
         ),
       ),
@@ -106,8 +108,35 @@ myBody(BuildContext context) {
         SizedBox(height: 20),
         Text(
           'نرخ ارزها در معاملات نقدی و رایج روزانه است معاملات نقدی معاملاتی هستند که خریدار و فروشنده به محض انجام معامله، ارز و ریال را با هم تبادل می نمایند.',
-           style: Theme.of(context).textTheme.bodyText1,
-        )
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
+        SizedBox(height: 25),
+        Container(
+          height: 33,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(
+              Radius.circular(100),
+            ),
+            color: Color.fromARGB(255, 130, 130, 130),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                'نام آزاد ارز',
+                style: Theme.of(context).textTheme.headline2,
+              ),
+              Text(
+                'قیمت',
+                style: Theme.of(context).textTheme.headline2,
+              ),
+              Text(
+                'تغییر',
+                style: Theme.of(context).textTheme.headline2,
+              ),
+            ],
+          ),
+        ),
       ],
     ),
   );
