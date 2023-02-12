@@ -144,7 +144,7 @@ myBody(BuildContext context) {
           ),
         ),
         SizedBox(height: 10),
-        Container(
+        SizedBox(
           width: double.infinity,
           height: 350,
           child: ListView.separated(
