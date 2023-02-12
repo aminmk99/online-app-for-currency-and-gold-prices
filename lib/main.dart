@@ -147,47 +147,100 @@ myBody(BuildContext context) {
         Container(
           width: double.infinity,
           height: 350,
-          child: ListView.builder(
-              physics: BouncingScrollPhysics(),
-              itemCount: 50,
-              itemBuilder: (BuildContext context, int pos) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 6),
-                  child: Container(
-                    width: double.infinity,
-                    height: 48,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: <BoxShadow>[
-                        BoxShadow(
-                          blurRadius: 2.0,
-                          color: Colors.grey,
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(
-                          'دلار',
-                          style: Theme.of(context).textTheme.bodyText2,
-                        ),
-                        Text(
-                          '46000',
-                          style: Theme.of(context).textTheme.bodyText2,
-                        ),
-                        Text(
-                          '+5',
-                          style: Theme.of(context).textTheme.bodyText2,
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
+          child: ListView.separated(
+            physics: BouncingScrollPhysics(),
+            itemCount: 50,
+            itemBuilder: (BuildContext context, int pos) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                child: PricesItems(),
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              if (index%9==0) {
+                return AddItems();
+              } //
+              else {
+                return SizedBox(width: 0);
+              }
+            },
+          ),
         ),
       ],
     ),
   );
-} //body of scaffold
+}
+
+class PricesItems extends StatelessWidget {
+  const PricesItems({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 48,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            blurRadius: 2.0,
+            color: Colors.grey,
+          ),
+        ],
+        borderRadius: BorderRadius.circular(100),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text(
+            'دلار',
+            style: Theme.of(context).textTheme.bodyText2,
+          ),
+          Text(
+            '46000',
+            style: Theme.of(context).textTheme.bodyText2,
+          ),
+          Text(
+            '+5',
+            style: Theme.of(context).textTheme.bodyText2,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class AddItems extends StatelessWidget {
+  const AddItems({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 48,
+      decoration: BoxDecoration(
+        color: Colors.red,
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            blurRadius: 2.0,
+            color: Colors.grey,
+          ),
+        ],
+        borderRadius: BorderRadius.circular(100),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text(
+            'تبلیغات',
+            style: TextStyle(color: Colors.white),
+          ),
+        ],
+      ),
+    );
+  }
+}
