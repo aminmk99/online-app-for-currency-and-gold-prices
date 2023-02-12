@@ -148,6 +148,7 @@ myBody(BuildContext context) {
           width: double.infinity,
           height: 350,
           child: ListView.builder(
+              physics: BouncingScrollPhysics(),
               itemCount: 50,
               itemBuilder: (BuildContext context, int pos) {
                 return Padding(
