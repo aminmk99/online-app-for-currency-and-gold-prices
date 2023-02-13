@@ -149,7 +149,7 @@ myBody(BuildContext context) {
           height: 350,
           child: ListView.separated(
             physics: BouncingScrollPhysics(),
-            itemCount: 50,
+            itemCount: 11,
             itemBuilder: (BuildContext context, int pos) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 6),
@@ -157,7 +157,7 @@ myBody(BuildContext context) {
               );
             },
             separatorBuilder: (BuildContext context, int index) {
-              if (index%9==0) {
+              if (index % 9 == 0) {
                 return AddItems();
               } //
               else {
@@ -165,6 +165,27 @@ myBody(BuildContext context) {
               }
             },
           ),
+        ),
+        Spacer(),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 25),
+          child: Container(
+              width: double.infinity,
+              height: 50,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 232, 232, 232),
+                borderRadius: BorderRadius.circular(1000),
+              ),
+              child: TextButton.icon(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                      Color.fromARGB(255, 202, 193, 255)),
+                ),
+                onPressed: () {},
+                icon: Icon(Icons.refresh_sharp, color: Colors.black),
+                label: Text('بروزر رسانی',
+                    style: Theme.of(context).textTheme.headline1),
+              )),
         ),
       ],
     ),
