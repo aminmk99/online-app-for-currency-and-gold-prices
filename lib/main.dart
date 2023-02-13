@@ -170,22 +170,38 @@ myBody(BuildContext context) {
         Padding(
           padding: const EdgeInsets.only(bottom: 25),
           child: Container(
-              width: double.infinity,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 232, 232, 232),
-                borderRadius: BorderRadius.circular(1000),
-              ),
-              child: TextButton.icon(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                      Color.fromARGB(255, 202, 193, 255)),
+            width: double.infinity,
+            height: 55,
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 232, 232, 232),
+              borderRadius: BorderRadius.circular(1000),
+            ),
+            child: Row(
+              children: [
+                SizedBox(
+                  height: 55,
+                  child: TextButton.icon(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                        Color.fromARGB(255, 202, 193, 255),
+                      ),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(1000)),
+                      ),
+                    ),
+                    onPressed: () {},
+                    icon: Icon(Icons.refresh_sharp,
+                        color: Colors.black, size: 27),
+                    label: Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Text('بروزر رسانی',
+                          style: Theme.of(context).textTheme.headline1),
+                    ),
+                  ),
                 ),
-                onPressed: () {},
-                icon: Icon(Icons.refresh_sharp, color: Colors.black),
-                label: Text('بروزر رسانی',
-                    style: Theme.of(context).textTheme.headline1),
-              )),
+              ],
+            ),
+          ),
         ),
       ],
     ),
@@ -224,7 +240,7 @@ class PricesItems extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyText2,
           ),
           Text(
-            '+5',
+            '5+',
             style: Theme.of(context).textTheme.bodyText2,
           ),
         ],
