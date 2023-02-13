@@ -168,10 +168,10 @@ myBody(BuildContext context) {
         ),
         Spacer(),
         Padding(
-          padding: const EdgeInsets.only(bottom: 25),
+          padding: const EdgeInsets.only(bottom: 60),
           child: Container(
             width: double.infinity,
-            height: 55,
+            height: 52,
             decoration: BoxDecoration(
               color: Color.fromARGB(255, 232, 232, 232),
               borderRadius: BorderRadius.circular(1000),
@@ -179,17 +179,19 @@ myBody(BuildContext context) {
             child: Row(
               children: [
                 SizedBox(
-                  height: 55,
+                  height: 52,
                   child: TextButton.icon(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
                         Color.fromARGB(255, 202, 193, 255),
                       ),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(1000)),
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(1000)),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () =>
+                        _showSnackBar(context, 'بروز رسانی با موفقیت انجام شد'),
                     icon: Icon(Icons.refresh_sharp,
                         color: Colors.black, size: 27),
                     label: Padding(
@@ -280,4 +282,12 @@ class AddItems extends StatelessWidget {
       ),
     );
   }
+}
+
+void _showSnackBar(BuildContext context, String message) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+        content: Text(message, style: Theme.of(context).textTheme.headline1),
+        backgroundColor: Colors.green),
+  );
 }
