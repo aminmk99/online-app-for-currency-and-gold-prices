@@ -195,12 +195,26 @@ myBody(BuildContext context) {
                     icon: Icon(Icons.refresh_sharp,
                         color: Colors.black, size: 27),
                     label: Padding(
-                      padding: const EdgeInsets.only(left: 8),
+                      padding: const EdgeInsets.only(left: 17),
                       child: Text('بروزر رسانی',
-                          style: Theme.of(context).textTheme.headline1),
+                          style: TextStyle(
+                            fontFamily: 'dana',
+                            fontSize: 13,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.black,
+                          )),
                     ),
                   ),
                 ),
+                SizedBox(width: 30),
+                Text(
+                  'آخرین بروز رسانی    ${_getTime()}',
+                  style: TextStyle(
+                    fontFamily: 'dana',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w300,
+                  ),
+                )
               ],
             ),
           ),
@@ -290,4 +304,8 @@ void _showSnackBar(BuildContext context, String message) {
         content: Text(message, style: Theme.of(context).textTheme.headline1),
         backgroundColor: Colors.green),
   );
+}
+
+String _getTime() {
+  return 'hello';
 }
