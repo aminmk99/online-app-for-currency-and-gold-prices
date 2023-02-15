@@ -79,34 +79,34 @@ class MyHome extends StatefulWidget {
 class _MyHomeState extends State<MyHome> {
   List<Currency> currency = [];
 
-  getItemsFromAPI() {
+  Future getItemsFromAPI() async {
     var url =
         "https://sasansafari.com/flutter/api.php?access_key=flutter123456";
 
-    http.get(Uri.parse(url)).then((value) {
-      print(value.statusCode);
-      if (currency.isEmpty) {
-        if (value.statusCode == 200) {
-          List jsonList = convert.jsonDecode(value.body);
+    var value = await http.get(Uri.parse(url));
 
-          if (jsonList.length != 0) {
-            for (var i = 0; i < jsonList.length; i++) {
-              setState(() {
-                currency.add(
-                  Currency(
-                    id: jsonList[i]["id"],
-                    title: jsonList[i]["title"],
-                    price: jsonList[i]["price"],
-                    changes: jsonList[i]["changes"],
-                    status: jsonList[i]["status"],
-                  ),
-                );
-              });
-            }
+    print(value.statusCode);
+    if (currency.isEmpty) {
+      if (value.statusCode == 200) {
+        List jsonList = convert.jsonDecode(value.body);
+
+        if (jsonList.length != 0) {
+          for (var i = 0; i < jsonList.length; i++) {
+            setState(() {
+              currency.add(
+                Currency(
+                  id: jsonList[i]["id"],
+                  title: jsonList[i]["title"],
+                  price: jsonList[i]["price"],
+                  changes: jsonList[i]["changes"],
+                  status: jsonList[i]["status"],
+                ),
+              );
+            });
           }
         }
       }
-    });
+    }
   }
 
   @override
