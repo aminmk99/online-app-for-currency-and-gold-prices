@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:test_application/Model/currency.dart';
 
 void main() {
   runApp(const MyApp());
@@ -149,7 +150,7 @@ myBody(BuildContext context) {
           height: 350,
           child: ListView.separated(
             physics: BouncingScrollPhysics(),
-            itemCount: 11,
+            itemCount: 4,
             itemBuilder: (BuildContext context, int pos) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 6),
@@ -225,12 +226,51 @@ myBody(BuildContext context) {
 }
 
 class PricesItems extends StatelessWidget {
-  const PricesItems({
+  PricesItems({
     Key? key,
   }) : super(key: key);
 
+  List<Currency> currency = [];
+
   @override
   Widget build(BuildContext context) {
+    currency.add(
+      Currency(
+        id: '1',
+        title: 'دلار آمریکا',
+        price: '42000',
+        changes: '+1',
+        status: 'p',
+      ),
+    );
+    currency.add(
+      Currency(
+        id: '2',
+        title: 'دلار کانادا',
+        price: '30000',
+        changes: '-5',
+        status: 'n',
+      ),
+    );
+    currency.add(
+      Currency(
+        id: '3',
+        title: 'یورو',
+        price: '58000',
+        changes: '-3',
+        status: 'n',
+      ),
+    );
+    currency.add(
+      Currency(
+        id: '4',
+        title: 'دینار کویت',
+        price: '80000',
+        changes: '+8',
+        status: 'p',
+      ),
+    );
+
     return Container(
       width: double.infinity,
       height: 48,
@@ -248,15 +288,15 @@ class PricesItems extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
-            'دلار',
+            currency[0].title!,
             style: Theme.of(context).textTheme.bodyText2,
           ),
           Text(
-            '46000',
+            currency[0].price!,
             style: Theme.of(context).textTheme.bodyText2,
           ),
           Text(
-            '5+',
+            currency[0].changes!,
             style: Theme.of(context).textTheme.bodyText2,
           ),
         ],
