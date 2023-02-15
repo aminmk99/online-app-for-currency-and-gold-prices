@@ -36,6 +36,18 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.w300,
             color: Colors.black,
           ),
+          headline3: TextStyle(
+            fontFamily: 'dana',
+            fontSize: 14,
+            fontWeight: FontWeight.w300,
+            color: Colors.red,
+          ),
+          headline4: TextStyle(
+            fontFamily: 'dana',
+            fontSize: 14,
+            fontWeight: FontWeight.w300,
+            color: Colors.green,
+          ),
           headline2: TextStyle(
             fontFamily: 'dana',
             fontSize: 14,
@@ -296,7 +308,9 @@ class ItemsOfPrices extends StatelessWidget {
           ),
           Text(
             currency[position].changes!,
-            style: Theme.of(context).textTheme.bodyText2,
+            style: currency[position].status == 'n'
+                ? Theme.of(context).textTheme.headline3
+                : Theme.of(context).textTheme.headline4,
           ),
         ],
       ),
