@@ -7,6 +7,7 @@ import 'dart:convert' as convert;
 import 'dart:developer' as developer;
 
 import 'package:test_application/widgets/app_bar.dart';
+import 'package:test_application/widgets/my_list_view_separated.dart';
 import 'package:test_application/widgets/prices_items.dart';
 import 'package:test_application/widgets/titles.dart';
 
@@ -85,7 +86,7 @@ class MyHome extends StatefulWidget {
 class _MyHomeState extends State<MyHome> {
   List<Currency> currency = [];
 
-  Future getItemsFromAPI() async {
+  Future getItemsFromAPIOld() async {
     var url =
         "https://sasansafari.com/flutter/api.php?access_key=flutter123456";
 
@@ -117,7 +118,7 @@ class _MyHomeState extends State<MyHome> {
 
   @override
   Widget build(BuildContext context) {
-    getItemsFromAPI();
+    getItemsFromAPIOld();
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 243, 243, 243),
       appBar: MyAppBar(titleText: 'قیمت بروز ارز و سکه',),
@@ -144,29 +145,7 @@ class _MyHomeState extends State<MyHome> {
             SizedBox(height: 25),
             Titles(title1: 'نام آزاد ارز', title2: 'قیمت', title3: 'قیمت',),
             SizedBox(height: 10),
-            SizedBox(
-              width: double.infinity,
-              height: 350,
-              child: ListView.separated(
-                physics: BouncingScrollPhysics(),
-                itemCount: currency.length,
-                itemBuilder: (BuildContext context, int pos) {
-                  print('list view');
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 6),
-                    child: PricesItems(currency: currency, position: pos),
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  if (index % 9 == 0) {
-                    return AddItems(text: 'تبلیغات',);
-                  } //
-                  else {
-                    return SizedBox(width: 0);
-                  }
-                },
-              ),
-            ),
+            MyListViewSeparated(currency: currency),
             Spacer(),
             Padding(
               padding: const EdgeInsets.only(bottom: 60),
