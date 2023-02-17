@@ -1,6 +1,10 @@
 # online_app_for_currency_and_gold_prices
 
-A new Flutter project.
+This is first and a practice project of CodeYad Flutter course.
+The goal is practice UI development and using a simple json file from an API which is programmed by Sasan Safari.
+
+[//]: # (![Screen-Shot]&#40;images/home-screen.png&#41;)
+<img src="images/home-screen.png" width="400" height="800">
 
 ## Getting Started
 
