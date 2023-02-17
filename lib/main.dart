@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:test_application/Model/currency.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
+import 'dart:developer' as developer;
 
 void main() {
   runApp(const MyApp());
@@ -85,7 +86,7 @@ class _MyHomeState extends State<MyHome> {
 
     var value = await http.get(Uri.parse(url));
 
-    print(value.statusCode);
+    developer.log(value.statusCode.toString(), name: 'getResponse'); //get log instead of printing
     if (currency.isEmpty) {
       if (value.statusCode == 200) {
         List jsonList = convert.jsonDecode(value.body);
