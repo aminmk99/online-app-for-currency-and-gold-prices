@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'dart:developer' as developer;
 
+import 'package:test_application/widgets/app_bar.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -115,7 +117,8 @@ class _MyHomeState extends State<MyHome> {
     getItemsFromAPI();
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 243, 243, 243),
-      appBar: myAppBar('قیمت بروز ارز و سکه', context),
+      // appBar: myAppBar('قیمت بروز ارز و سکه', context),
+      appBar: MyAppBar(titleText: 'قیمت بروز ارز و سکه',),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Column(
@@ -247,34 +250,6 @@ class _MyHomeState extends State<MyHome> {
     );
   }
 }
-
-myAppBar(String titleText, BuildContext context) {
-  return AppBar(
-    elevation: 0,
-    backgroundColor: Colors.white,
-    actions: [
-      Image.asset('assets/images/icon.png'),
-      Align(
-        alignment: Alignment.center,
-        child: Text(
-          titleText,
-          style: Theme.of(context).textTheme.headline1,
-        ),
-      ),
-      Expanded(
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 30),
-            child: Image.asset(
-              'assets/images/menu.png',
-            ),
-          ),
-        ),
-      ),
-    ],
-  );
-} //app bar of scaffold
 
 class ItemsOfPrices extends StatelessWidget {
   List<Currency> currency;
