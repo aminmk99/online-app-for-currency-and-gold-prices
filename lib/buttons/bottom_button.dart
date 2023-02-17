@@ -3,6 +3,12 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class BottomButton extends StatelessWidget {
+
+  BottomButton({required this.text, required this.icon});
+
+  String text;
+  IconData icon;
+
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
@@ -15,14 +21,14 @@ class BottomButton extends StatelessWidget {
         ),
       ),
       onPressed: () => _showSnackBar(context, 'بروز رسانی با موفقیت انجام شد'),
-      icon: Icon(Icons.refresh_sharp, color: Colors.black, size: 27),
+      icon: Icon(icon, color: Colors.black, size: 27),
       label: Padding(
         padding: const EdgeInsets.only(left: 17),
         child: Text(
-          'بروزر رسانی',
+          text,
           style: TextStyle(
             fontFamily: 'dana',
-            fontSize: 13,
+            fontSize: 14,
             fontWeight: FontWeight.w300,
             color: Colors.black,
           ),

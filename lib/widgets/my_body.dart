@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_application/widgets/main_title.dart';
 import 'package:test_application/widgets/titles.dart';
 
-import 'bottom_widget.dart';
+import 'package:test_application/widgets/bottom_widget.dart';
 import 'my_list_view_separated.dart';
 
 class MyBody extends StatelessWidget {

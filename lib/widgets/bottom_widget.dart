@@ -19,7 +19,7 @@ class BottomWidget extends StatelessWidget {
           children: [
             SizedBox(
               height: 52,
-              child: BottomButton(),
+              child: BottomButton(text: 'بروز رسانی', icon: Icons.refresh_sharp),
             ),
             SizedBox(width: 30),
             Text(

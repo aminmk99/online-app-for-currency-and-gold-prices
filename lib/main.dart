@@ -1,18 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:test_application/Model/currency.dart';
-import 'package:http/http.dart' as http;
-import 'package:test_application/widgets/add_items.dart';
-import 'dart:convert' as convert;
-import 'dart:developer' as developer;
+import 'package:test_application/screen/main_screen.dart';
 
-import 'package:test_application/widgets/app_bar.dart';
-import 'package:test_application/widgets/bottom_widget.dart';
-import 'package:test_application/widgets/main_title.dart';
-import 'package:test_application/widgets/my_body.dart';
-import 'package:test_application/widgets/my_list_view_separated.dart';
-import 'package:test_application/widgets/prices_items.dart';
-import 'package:test_application/widgets/titles.dart';
 
 void main() {
   runApp(const MyApp());
@@ -74,58 +63,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         Locale('fa'), // Persian
       ],
-      home: MyHome(),
+      home: MainScreen(),
     );
   }
-}
-
-class MyHome extends StatefulWidget {
-  const MyHome({Key? key}) : super(key: key);
-
-  @override
-  State<MyHome> createState() => _MyHomeState();
-}
-
-class _MyHomeState extends State<MyHome> {
-  List<Currency> currency = [];
-
-  @override
-  Widget build(BuildContext context) {
-    getItemsFromAPIOld();
-    return Scaffold(
-      backgroundColor: Color.fromARGB(255, 243, 243, 243),
-      appBar: MyAppBar(titleText: 'قیمت بروز ارز و سکه',),
-      body: MyBody(currency: currency),
-    );
-  }
-
-  Future getItemsFromAPIOld() async {
-    var url =
-        "https://sasansafari.com/flutter/api.php?access_key=flutter123456";
-
-    var value = await http.get(Uri.parse(url));
-
-    developer.log(value.statusCode.toString(), name: 'getResponse'); //get log instead of printing
-    if (currency.isEmpty) {
-      if (value.statusCode == 200) {
-        List jsonList = convert.jsonDecode(value.body);
-
-        if (jsonList.length != 0) {
-          for (var i = 0; i < jsonList.length; i++) {
-            setState(() {
-              currency.add(
-                Currency(
-                  id: jsonList[i]["id"],
-                  title: jsonList[i]["title"],
-                  price: jsonList[i]["price"],
-                  changes: jsonList[i]["changes"],
-                  status: jsonList[i]["status"],
-                ),
-              );
-            });
-          }
-        }
-      }
-    }
-  } //get items from API
 }
