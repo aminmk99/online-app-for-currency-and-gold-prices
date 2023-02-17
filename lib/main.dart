@@ -7,6 +7,7 @@ import 'dart:convert' as convert;
 import 'dart:developer' as developer;
 
 import 'package:test_application/widgets/app_bar.dart';
+import 'package:test_application/widgets/prices_items.dart';
 import 'package:test_application/widgets/titles.dart';
 
 void main() {
@@ -119,7 +120,6 @@ class _MyHomeState extends State<MyHome> {
     getItemsFromAPI();
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 243, 243, 243),
-      // appBar: myAppBar('قیمت بروز ارز و سکه', context),
       appBar: MyAppBar(titleText: 'قیمت بروز ارز و سکه',),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -154,7 +154,7 @@ class _MyHomeState extends State<MyHome> {
                   print('list view');
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 6),
-                    child: ItemsOfPrices(currency: currency, position: pos),
+                    child: PricesItems(currency: currency, position: pos),
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) {
@@ -223,49 +223,6 @@ class _MyHomeState extends State<MyHome> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ItemsOfPrices extends StatelessWidget {
-  List<Currency> currency;
-  int position;
-  ItemsOfPrices({required this.currency, required this.position});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 48,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            blurRadius: 2.0,
-            color: Colors.grey,
-          ),
-        ],
-        borderRadius: BorderRadius.circular(100),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text(
-            currency[position].title!,
-            style: Theme.of(context).textTheme.bodyText2,
-          ),
-          Text(
-            currency[position].price!,
-            style: Theme.of(context).textTheme.bodyText2,
-          ),
-          Text(
-            currency[position].changes!,
-            style: currency[position].status == 'n'
-                ? Theme.of(context).textTheme.headline3
-                : Theme.of(context).textTheme.headline4,
-          ),
-        ],
       ),
     );
   }
