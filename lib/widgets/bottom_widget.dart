@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:test_application/buttons/bottom_button.dart';
 
 class BottomWidget extends StatelessWidget {
-  const BottomWidget({Key? key}) : super(key: key);
+  BottomWidget({required this.currency, required this.getItemsFromAPI});
+
+  var currency;
+  var getItemsFromAPI;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,11 @@ class BottomWidget extends StatelessWidget {
           children: [
             SizedBox(
               height: 52,
-              child: BottomButton(text: 'بروز رسانی', icon: Icons.refresh_sharp),
+              child: BottomButton(
+                text: 'بروز رسانی',
+                icon: Icons.refresh_sharp,
+                currency: currency,
+              ),
             ),
             SizedBox(width: 30),
             Text(

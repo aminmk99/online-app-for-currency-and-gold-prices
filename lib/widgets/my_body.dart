@@ -6,9 +6,11 @@ import 'package:test_application/widgets/bottom_widget.dart';
 import 'my_list_view_separated.dart';
 
 class MyBody extends StatelessWidget {
-  MyBody({required this.currency});
+  MyBody({required this.currency, required this.getItemsFromAPI});
 
   var currency;
+
+  var getItemsFromAPI;
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +28,9 @@ class MyBody extends StatelessWidget {
             SizedBox(height: 25),
             Titles(title1: 'نام آزاد ارز', title2: 'قیمت', title3: 'قیمت',),
             SizedBox(height: 10),
-            MyListViewSeparated(currency: currency),
+            MyListViewSeparated(currency: currency, getItemsFromAPI: getItemsFromAPI),
             Spacer(),
-            BottomWidget(),
+            BottomWidget(currency: currency, getItemsFromAPI: getItemsFromAPI),
           ],
         ),
       );
