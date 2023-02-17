@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:test_application/buttons/bottom_button.dart';
 
-class MyWidget extends StatelessWidget {
-  const MyWidget({Key? key}) : super(key: key);
+class BottomWidget extends StatelessWidget {
+  const BottomWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +33,6 @@ class MyWidget extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  void _showSnackBar(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-          content: Text(message, style: Theme.of(context).textTheme.headline1),
-          backgroundColor: Colors.green),
     );
   }
 

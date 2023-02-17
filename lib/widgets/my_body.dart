@@ -1,0 +1,36 @@
+import 'package:flutter/material.dart';
+import 'package:test_application/widgets/main_title.dart';
+import 'package:test_application/widgets/titles.dart';
+
+import 'bottom_widget.dart';
+import 'my_list_view_separated.dart';
+
+class MyBody extends StatelessWidget {
+  MyBody({required this.currency});
+
+  var currency;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Column(
+          children: [
+            SizedBox(height: 25),
+            MainTitle(text: 'نرخ ارز آزاد چیست؟'),
+            SizedBox(height: 20),
+            Text(
+              'نرخ ارزها در معاملات نقدی و رایج روزانه است معاملات نقدی معاملاتی هستند که خریدار و فروشنده به محض انجام معامله، ارز و ریال را با هم تبادل می نمایند.',
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+            SizedBox(height: 25),
+            Titles(title1: 'نام آزاد ارز', title2: 'قیمت', title3: 'قیمت',),
+            SizedBox(height: 10),
+            MyListViewSeparated(currency: currency),
+            Spacer(),
+            BottomWidget(),
+          ],
+        ),
+      );
+  }
+}
