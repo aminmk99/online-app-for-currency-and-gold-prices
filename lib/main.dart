@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:test_application/Model/currency.dart';
 import 'package:http/http.dart' as http;
+import 'package:test_application/widgets/add_items.dart';
 import 'dart:convert' as convert;
 import 'dart:developer' as developer;
 
@@ -182,7 +183,7 @@ class _MyHomeState extends State<MyHome> {
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   if (index % 9 == 0) {
-                    return AddItems();
+                    return AddItems(text: 'تبلیغات',);
                   } //
                   else {
                     return SizedBox(width: 0);
@@ -287,39 +288,6 @@ class ItemsOfPrices extends StatelessWidget {
             style: currency[position].status == 'n'
                 ? Theme.of(context).textTheme.headline3
                 : Theme.of(context).textTheme.headline4,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class AddItems extends StatelessWidget {
-  const AddItems({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 48,
-      decoration: BoxDecoration(
-        color: Colors.red,
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            blurRadius: 2.0,
-            color: Colors.grey,
-          ),
-        ],
-        borderRadius: BorderRadius.circular(100),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text(
-            'تبلیغات',
-            style: TextStyle(color: Colors.white),
           ),
         ],
       ),
