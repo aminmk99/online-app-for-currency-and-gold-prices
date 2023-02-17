@@ -7,6 +7,7 @@ import 'dart:convert' as convert;
 import 'dart:developer' as developer;
 
 import 'package:test_application/widgets/app_bar.dart';
+import 'package:test_application/widgets/titles.dart';
 
 void main() {
   runApp(const MyApp());
@@ -141,32 +142,7 @@ class _MyHomeState extends State<MyHome> {
               style: Theme.of(context).textTheme.bodyText1,
             ),
             SizedBox(height: 25),
-            Container(
-              height: 33,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(100),
-                ),
-                color: Color.fromARGB(255, 130, 130, 130),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(
-                    'نام آزاد ارز',
-                    style: Theme.of(context).textTheme.headline2,
-                  ),
-                  Text(
-                    'قیمت',
-                    style: Theme.of(context).textTheme.headline2,
-                  ),
-                  Text(
-                    'تغییر',
-                    style: Theme.of(context).textTheme.headline2,
-                  ),
-                ],
-              ),
-            ),
+            Titles(title1: 'نام آزاد ارز', title2: 'قیمت', title3: 'قیمت',),
             SizedBox(height: 10),
             SizedBox(
               width: double.infinity,
