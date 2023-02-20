@@ -21,7 +21,7 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getItemsFromAPI();
+    // getItemsFromAPI();
   }
 
   @override
@@ -54,7 +54,7 @@ class _MainScreenState extends State<MainScreen> {
     if (currency.isEmpty) {
       if (value.statusCode == 200) {
         List jsonList = convert.jsonDecode(value.body);
-        _showSnackBar(context, 'دریافت با موفقیت انجام شد');
+        _showSnackBar(context, 'دریافت اطلاعات با موفقیت انجام شد');
         if (jsonList.length != 0) {
           for (var i = 0; i < jsonList.length; i++) {
             setState(() {
