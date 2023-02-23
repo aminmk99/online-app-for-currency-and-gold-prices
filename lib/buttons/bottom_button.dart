@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'dart:convert' as convert;
 import 'dart:developer' as developer;
 import '../Model/currency.dart';
@@ -11,11 +12,13 @@ class BottomButton extends StatefulWidget {
     required this.text,
     required this.icon,
     required this.currency,
+    required this.lastUpdated,
   });
 
   String text;
   IconData icon;
   var currency;
+  var lastUpdated;
 
   @override
   State<BottomButton> createState() => _BottomButtonState();
@@ -99,6 +102,7 @@ class _BottomButtonState extends State<BottomButton> {
         List jsonList = convert.jsonDecode(value.body);
         developer.log('before snack bar', name: 'my log');
         _showSnackBar(context, 'بروز رسانی با موفیت انجام شد');
+        widget.lastUpdated = _getTime();
         if (jsonList.length != 0) {
           for (var i = 0; i < jsonList.length; i++) {
             setState(() {
@@ -126,5 +130,11 @@ class _BottomButtonState extends State<BottomButton> {
           content: Text(message, style: Theme.of(context).textTheme.headline1),
           backgroundColor: Colors.green),
     );
+  }
+
+  String _getTime() {
+    DateTime now = DateTime.now();
+
+    return DateFormat('kk:mm:ss').format(now);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:test_application/buttons/bottom_button.dart';
 
 class BottomWidget extends StatelessWidget {
@@ -6,6 +7,7 @@ class BottomWidget extends StatelessWidget {
 
   var currency;
   var getItemsFromAPI;
+  var lastTimeUpdated;
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +28,12 @@ class BottomWidget extends StatelessWidget {
                 text: 'بروز رسانی',
                 icon: Icons.refresh_sharp,
                 currency: currency,
+                lastUpdated: lastTimeUpdated,
               ),
             ),
             SizedBox(width: 30),
             Text(
-              'آخرین بروز رسانی    ${_getTime()}',
+              'آخرین بروز رسانی    ${_getTime}',
               style: TextStyle(
                 fontFamily: 'dana',
                 fontSize: 13,
@@ -44,6 +47,9 @@ class BottomWidget extends StatelessWidget {
   }
 
   String _getTime() {
-    return 'test';
+
+    DateTime now = DateTime.now();
+
+    return DateFormat('kk:mm:ss').format(now);
   }
 }
