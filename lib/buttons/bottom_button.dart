@@ -7,18 +7,23 @@ import '../Model/currency.dart';
 import '../widgets/add_items.dart';
 import '../widgets/prices_items.dart';
 
+typedef FutureCallback = Future<void> Function();
+
 class BottomButton extends StatefulWidget {
   BottomButton({
     required this.text,
     required this.icon,
     required this.currency,
-    required this.lastUpdated,
+    required this.getItemsFromAPI2
   });
+
+  
 
   String text;
   IconData icon;
   var currency;
   var lastUpdated;
+  FutureCallback getItemsFromAPI2; 
 
   @override
   State<BottomButton> createState() => _BottomButtonState();
@@ -68,7 +73,7 @@ class _BottomButtonState extends State<BottomButton> {
               return Center(child: CircularProgressIndicator());
             }
           },
-          future: getItemsFromAPI(),
+          future: widget.getItemsFromAPI2(),
         );
       },
       icon: Icon(widget.icon, color: Colors.black, size: 27),
@@ -85,56 +90,5 @@ class _BottomButtonState extends State<BottomButton> {
         ),
       ),
     );
-  }
-
-  Future getItemsFromAPI() async {
-    var url =
-        "https://sasansafari.com/flutter/api.php?access_key=flutter123456";
-
-    var value = await http.get(Uri.parse(url));
-
-    developer.log(
-      value.statusCode.toString(),
-      name: 'getResponse',
-    ); //get log instead of printing
-    if (widget.currency.isEmpty) {
-      if (value.statusCode == 200) {
-        List jsonList = convert.jsonDecode(value.body);
-        developer.log('before snack bar', name: 'my log');
-        _showSnackBar(context, 'بروز رسانی با موفیت انجام شد');
-        widget.lastUpdated = _getTime();
-        if (jsonList.length != 0) {
-          for (var i = 0; i < jsonList.length; i++) {
-            setState(() {
-              widget.currency.add(
-                Currency(
-                  id: jsonList[i]["id"],
-                  title: jsonList[i]["title"],
-                  price: jsonList[i]["price"],
-                  changes: jsonList[i]["changes"],
-                  status: jsonList[i]["status"],
-                ),
-              );
-            });
-          }
-        }
-      }
-    }
-    return value;
-  }
-
-  //get items from API
-  void _showSnackBar(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-          content: Text(message, style: Theme.of(context).textTheme.headline1),
-          backgroundColor: Colors.green),
-    );
-  }
-
-  String _getTime() {
-    DateTime now = DateTime.now();
-
-    return DateFormat('kk:mm:ss').format(now);
   }
 }

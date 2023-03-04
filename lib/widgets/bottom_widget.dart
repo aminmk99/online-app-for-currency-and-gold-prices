@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:test_application/buttons/bottom_button.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
+import 'dart:developer' as developer;
 
-class BottomWidget extends StatelessWidget {
+import '../Model/currency.dart';
+
+class BottomWidget extends StatefulWidget {
   BottomWidget({required this.currency, required this.getItemsFromAPI});
 
   var currency;
   var getItemsFromAPI;
-  var lastTimeUpdated;
+
+  @override
+  State<BottomWidget> createState() => _BottomWidgetState();
+}
+
+class _BottomWidgetState extends State<BottomWidget> {
+  DateTime now = DateTime.now();
+
+  late var lastTime = DateFormat('kk:mm:ss').format(now);
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +40,13 @@ class BottomWidget extends StatelessWidget {
               child: BottomButton(
                 text: 'بروز رسانی',
                 icon: Icons.refresh_sharp,
-                currency: currency,
-                lastUpdated: lastTimeUpdated,
+                currency: widget.currency,
+                getItemsFromAPI2: getItemsFromAPI,
               ),
             ),
             SizedBox(width: 30),
             Text(
-              'آخرین بروز رسانی    ${_getTime}',
+              'آخرین بروز رسانی    ${lastTime}',
               style: TextStyle(
                 fontFamily: 'dana',
                 fontSize: 13,
@@ -46,10 +59,60 @@ class BottomWidget extends StatelessWidget {
     );
   }
 
-  String _getTime() {
+  Future getItemsFromAPI() async {
 
     DateTime now = DateTime.now();
 
-    return DateFormat('kk:mm:ss').format(now);
+    var url =
+        "https://sasansafari.com/flutter/api.php?access_key=flutter123456";
+
+    var value = await http.get(Uri.parse(url));
+
+    developer.log(
+      value.statusCode.toString(),
+      name: 'getResponse',
+    ); //get log instead of printing
+    if (widget.currency.isEmpty) {
+      if (value.statusCode == 200) {
+        List jsonList = convert.jsonDecode(value.body);
+        developer.log('before snack bar', name: 'my log');
+        setState(() {
+          lastTime = (DateFormat('kk:mm:ss').format(now)).toString();
+        });
+        print('************************************************');
+        print(lastTime);
+        _showSnackBar(context, 'بروز رسانی با موفیت انجام شد');
+        if (jsonList.length != 0) {
+          for (var i = 0; i < jsonList.length; i++) {
+            setState(() {
+              widget.currency.add(
+                Currency(
+                  id: jsonList[i]["id"],
+                  title: jsonList[i]["title"],
+                  price: jsonList[i]["price"],
+                  changes: jsonList[i]["changes"],
+                  status: jsonList[i]["status"],
+                ),
+              );
+            });
+          }
+        }
+      }
+    }
+    return value;
+  }
+
+  void _showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+          content: Text(message, style: Theme.of(context).textTheme.headline1),
+          backgroundColor: Colors.green),
+    );
+  }
+
+  String _getTime() {
+    DateTime now = DateTime.now();
+
+    return (DateFormat('kk:mm:ss').format(now)).toString();
   }
 }
