@@ -12,7 +12,8 @@ class MyListViewSeparated extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 350,
+      height: MediaQuery.of(context).size.height/2.4,
+      // height: 350,
       child: FutureBuilder(
         builder: (context, snapshot) {
           if (snapshot.hasData) {

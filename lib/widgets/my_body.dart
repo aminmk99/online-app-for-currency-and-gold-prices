@@ -16,22 +16,24 @@ class MyBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: Column(
-          children: [
-            SizedBox(height: 25),
-            MainTitle(text: 'نرخ ارز آزاد چیست؟'),
-            SizedBox(height: 20),
-            Text(
-              'نرخ ارزها در معاملات نقدی و رایج روزانه است معاملات نقدی معاملاتی هستند که خریدار و فروشنده به محض انجام معامله، ارز و ریال را با هم تبادل می نمایند.',
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-            SizedBox(height: 25),
-            Titles(title1: 'نام آزاد ارز', title2: 'قیمت', title3: 'قیمت',),
-            SizedBox(height: 10),
-            MyListViewSeparated(currency: currency, getItemsFromAPI: getItemsFromAPI),
-            Spacer(),
-            BottomWidget(currency: currency, getItemsFromAPI: getItemsFromAPI),
-          ],
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            children: [
+              SizedBox(height: 25),
+              MainTitle(text: 'نرخ ارز آزاد چیست؟'),
+              SizedBox(height: 20),
+              Text(
+                'نرخ ارزها در معاملات نقدی و رایج روزانه است معاملات نقدی معاملاتی هستند که خریدار و فروشنده به محض انجام معامله، ارز و ریال را با هم تبادل می نمایند.',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+              SizedBox(height: 25),
+              Titles(title1: 'نام آزاد ارز', title2: 'قیمت', title3: 'قیمت',),
+              SizedBox(height: 10),
+              MyListViewSeparated(currency: currency, getItemsFromAPI: getItemsFromAPI),
+              BottomWidget(currency: currency, getItemsFromAPI: getItemsFromAPI),
+            ],
+          ),
         ),
       );
   }

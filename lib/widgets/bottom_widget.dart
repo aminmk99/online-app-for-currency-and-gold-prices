@@ -22,13 +22,16 @@ class _BottomWidgetState extends State<BottomWidget> {
 
   late var lastTime = DateFormat('kk:mm:ss').format(now);
 
+  double magnitude = 1;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 60),
+      padding: const EdgeInsets.only(bottom: 50, top: 16),
       child: Container(
         width: double.infinity,
-        height: 52,
+        height: MediaQuery.of(context).size.height/14.5,
+        // height: 52,
         decoration: BoxDecoration(
           color: Color.fromARGB(255, 232, 232, 232),
           borderRadius: BorderRadius.circular(1000),
@@ -36,7 +39,8 @@ class _BottomWidgetState extends State<BottomWidget> {
         child: Row(
           children: [
             SizedBox(
-              height: 52,
+              height: MediaQuery.of(context).size.height/14.5,
+              // height: 52,
               child: BottomButton(
                 text: 'بروز رسانی',
                 icon: Icons.refresh_sharp,
@@ -44,7 +48,7 @@ class _BottomWidgetState extends State<BottomWidget> {
                 getItemsFromAPI2: getItemsFromAPI,
               ),
             ),
-            SizedBox(width: 30),
+            SizedBox(width: MediaQuery.of(context).size.width/20),
             Text(
               'آخرین بروز رسانی    ${lastTime}',
               style: TextStyle(
