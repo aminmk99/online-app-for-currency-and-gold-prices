@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.online_app_for_currency_and_gold_prices">
+
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="online_app_for_currency_and_gold_prices"
         android:name="${applicationName}"

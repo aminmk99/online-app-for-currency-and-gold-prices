@@ -7,6 +7,7 @@ import 'dart:developer' as developer;
 
 import '../Model/currency.dart';
 
+// ignore: must_be_immutable
 class BottomWidget extends StatefulWidget {
   BottomWidget({required this.currency, required this.getItemsFromAPI});
 

@@ -9,6 +9,7 @@ import '../widgets/prices_items.dart';
 
 typedef FutureCallback = Future<void> Function();
 
+// ignore: must_be_immutable
 class BottomButton extends StatefulWidget {
   BottomButton({
     required this.text,
