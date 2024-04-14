@@ -8,9 +8,9 @@ import 'my_list_view_separated.dart';
 class MyBody extends StatelessWidget {
   MyBody({required this.currency, required this.getItemsFromAPI});
 
-  var currency;
+  final currency;
 
-  var getItemsFromAPI;
+  final getItemsFromAPI;
 
   @override
   Widget build(BuildContext context) {

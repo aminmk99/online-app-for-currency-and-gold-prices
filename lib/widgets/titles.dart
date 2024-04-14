@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class Titles extends StatelessWidget {
   Titles({required this.title1, required this.title2, required this.title3});
 
-  String title1;
-  String title2;
-  String title3;
+  final String title1;
+  final String title2;
+  final String title3;
 
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AddItems extends StatelessWidget {
   AddItems({required this.text});
 
-  String text;
+  final String text;
 
   @override
   Widget build(BuildContext context) {

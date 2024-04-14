@@ -5,9 +5,9 @@ import 'package:test_application/widgets/prices_items.dart';
 class MyListViewSeparated extends StatelessWidget {
   MyListViewSeparated({required this.currency, required this.getItemsFromAPI});
 
-  var currency;
+  final currency;
 
-  var getItemsFromAPI;
+  final getItemsFromAPI;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

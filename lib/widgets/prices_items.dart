@@ -4,8 +4,8 @@ import '../Model/currency.dart';
 class PricesItems extends StatelessWidget {
   PricesItems({required this.currency, required this.position});
 
-  List<Currency> currency;
-  int position;
+  final List<Currency> currency;
+  final int position;
 
   @override
   Widget build(BuildContext context) {
