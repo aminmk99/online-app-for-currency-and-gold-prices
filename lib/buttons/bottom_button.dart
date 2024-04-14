@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
-import 'dart:convert' as convert;
-import 'dart:developer' as developer;
-import '../Model/currency.dart';
 import '../widgets/add_items.dart';
 import '../widgets/prices_items.dart';
 
 typedef FutureCallback = Future<void> Function();
 
-// ignore: must_be_immutable
 class BottomButton extends StatefulWidget {
   BottomButton({
     required this.text,
@@ -20,11 +14,11 @@ class BottomButton extends StatefulWidget {
 
   
 
-  String text;
-  IconData icon;
-  var currency;
-  var lastUpdated;
-  FutureCallback getItemsFromAPI2; 
+  final String text;
+  final IconData icon;
+  final currency;
+  // final lastUpdated;
+  final FutureCallback getItemsFromAPI2; 
 
   @override
   State<BottomButton> createState() => _BottomButtonState();
